@@ -32,5 +32,6 @@ func main() {
 
 	fmt.Printf("Watching folder: %s\n", folderPath)
 
-	lib.WactherFile(watcher)
+	extension := envMap["EXTENSION"]
+	lib.WactherFile(watcher, extension)
 }

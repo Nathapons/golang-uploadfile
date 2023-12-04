@@ -7,7 +7,7 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
-func WactherFile(watcher *fsnotify.Watcher) {
+func WactherFile(watcher *fsnotify.Watcher, extension string) {
 	for {
 		select {
 		case event, ok := <-watcher.Events:
@@ -15,7 +15,7 @@ func WactherFile(watcher *fsnotify.Watcher) {
 				return
 			}
 			if event.Op&fsnotify.Create == fsnotify.Create {
-				if strings.HasSuffix(event.Name, ".csv") {
+				if strings.HasSuffix(event.Name, extension) {
 					log.Printf("New CSV file detected: %s\n", event.Name)
 					// Add your logic to upload data in real-time here
 				}
